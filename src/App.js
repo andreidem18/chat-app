@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import Chat from './components/Chat/Chat.js';
+import Join from './components/Join/Join.js';
+import Login from './components/Login/Login.js';
+import SignUp from './components/SignUp/SignUp.js';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/chat" component={Chat}/>
+        <Route path="/join" component={Join}/>
+        <Route path="/signup" component={SignUp}/>
+        <Route path="/" component={Login}/>
+      </Switch>
+    </Router>
   );
 }
 
-export default App;
