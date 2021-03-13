@@ -4,7 +4,8 @@ const INITIAL_STATE={
     room: "",
     user: "",
     access: false,
-    token: ""
+    token: "",
+    backgroundColor: "#6693ff"
   }
   
   const reducer = (state=INITIAL_STATE, action) => {
