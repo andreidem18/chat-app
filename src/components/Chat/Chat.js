@@ -1,6 +1,8 @@
 import {useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
 import io from 'socket.io-client';
+import {useHistory} from 'react-router-dom';
+import {quitRoom} from "../../actions/actionsGenerator.js";
+import {useDispatch} from "react-redux";
 import React, {useEffect, useState} from 'react';
 
 let socket;
@@ -9,6 +11,8 @@ const Chat = () => {
 
   const user = useSelector((state => state.user));
   const room = useSelector((state => state.room));
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
@@ -37,10 +41,16 @@ const Chat = () => {
       socket.emit('sendMessage', message);
     }
   }
+  const comeBack = () => {
+    dispatch(quitRoom());
+    history.push('/join')
+  }
   return(
     <div>
       <h1>Chat</h1>
-      <Link to="/">come back</Link>
+      <button onClick={comeBack}>
+        come back
+      </button>
       <p>{user}, {room}</p>
       <div style={{textAlign: 'center'}}>
         <h3>Messages</h3>

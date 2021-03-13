@@ -1,12 +1,20 @@
 export const types = {
-    setRoom: "SET_ROOM",
-    setUser: "SET_USER"
+    addRoom: "ADD_ROOM",
+    quitRoom: "QUIT_ROOM",
+    login: "SET_USER",
+    logOut: "LOG_OUT"
 }
-export const setRoom = (data) => ({
-    type: types.setRoom,
+export const addRoom = (room) => ({
+    type: types.addRoom,
+    payload: room
+})
+export const quitRoom = () => ({
+    type: types.quitRoom
+})
+export const login = (data) => ({
+    type: types.login,
     payload: data
 })
-export const setUser = (data) => ({
-    type: types.setUser,
-    payload: data
+export const logOut = () => ({
+    type: types.logOut
 })

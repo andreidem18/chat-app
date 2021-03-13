@@ -1,34 +1,39 @@
-import {useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
-import {setRoom} from '../../actions/actionsGenerator';
+import {addRoom, logOut} from '../../actions/actionsGenerator';
 import {useHistory} from 'react-router-dom';
+import {useState} from 'react';
 
 const Join = () => {
 
-  const {register, handleSubmit} = useForm();
-
   const dispatch = useDispatch();
   const history = useHistory();
+  const [room, setRoom] = useState('');
 
-  const onSubmit = (data) => {
-    dispatch(setRoom({
-      room: data.room,
-      user: data.user
-    }))
-    history.push('/chat');
+  const handleRoom = () => {
+    if(room){
+      dispatch(addRoom(room));
+      history.push('/chat');
+    }
+  }
+  const handleLogOut = () => {
+    history.push('/');
+    dispatch(logOut());
   }
   return(
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Room
-        <input name="room" ref={register}/>
-      </label>
-      <label>
-        User
-        <input name="user" ref={register}/>
-      </label>
-      <button>Get into</button>
-    </form>
+    <>
+        <label>
+          Room
+          <input type="text" 
+            value={room} 
+            onChange={(e) => setRoom(e.target.value)}/>
+        </label>
+        <button onClick={handleRoom}>
+          Get into
+        </button>
+        <button onClick={handleLogOut}>
+          log out
+        </button>    
+    </>
   )
 }
 

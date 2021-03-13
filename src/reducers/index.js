@@ -1,18 +1,38 @@
 import {types} from '../actions/actionsGenerator';
 
 const INITIAL_STATE={
-    room: "sala",
-    user: "andres",
+    room: "",
+    user: "",
+    access: false,
+    token: ""
   }
   
   const reducer = (state=INITIAL_STATE, action) => {
     switch(action.type){
-      case types.setRoom:
+      case types.addRoom:
         return {
           ...state,
-          room: action.payload.room,
-          user: action.payload.user
-      }
+          room: action.payload,
+        }
+      case types.quitRoom:
+        return {
+          ...state,
+          room: ""
+        }
+      case types.login:
+        return {
+          ...state,
+          user: action.payload.user,
+          access: true,
+          token: action.payload.token
+        }
+      case types.logOut:
+        return {
+          ...state,
+          user: '',
+          access: false,
+          token: ''
+        }
       default:
         return state;
     }
