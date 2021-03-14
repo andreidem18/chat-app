@@ -1,11 +1,12 @@
 import {useSelector} from 'react-redux';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import {useHistory} from 'react-router-dom';
 import {quitRoom} from "../../actions/actionsGenerator.js";
 import {useDispatch} from "react-redux";
 import React, {useEffect, useState} from 'react';
+import 'Chat.css';
 
-let socket;
+// let socket;
 const Chat = () => {
 
 
@@ -17,40 +18,45 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   
-  useEffect(() => {
-    if(user && room){
-      socket = io('https://academlo-chat.herokuapp.com/', {
-          query: {
-              token:
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjA0OTVhMWE4NmVjNjFjYmQ4YmE3YzNjIiwiaWF0IjoxNjE1NDE5OTMwLCJleHAiOjE2MTU2NzkxMzB9.i60o7JKcmoLV45EO2EvZOTBwJV19CCNgDqJi5djBPCc"
-          }
-      });
-      socket.emit('join', user, room);
-      socket.on('error', error => console.log(error));
-    }
-  }, [user, room])
+  // useEffect(() => {
+  //   if(user && room){
+  //     socket = io('https://academlo-chat.herokuapp.com/', {
+  //         query: {
+  //             token:
+  //               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjA0OTVhMWE4NmVjNjFjYmQ4YmE3YzNjIiwiaWF0IjoxNjE1NDE5OTMwLCJleHAiOjE2MTU2NzkxMzB9.i60o7JKcmoLV45EO2EvZOTBwJV19CCNgDqJi5djBPCc"
+  //         }
+  //     });
+  //     socket.emit('join', user, room);
+  //     socket.on('error', error => console.log(error));
+  //   }
+  // }, [user, room])
 
-  useEffect(() => {
-    socket.on('message', (message) => {
-      setMessages(msgs => [ ...msgs, message ]);
-    })
-  }, []);
+  // useEffect(() => {
+  //   socket.on('message', (message) => {
+  //     setMessages(msgs => [ ...msgs, message ]);
+  //   })
+  // }, []);
 
-  const send = () => {
-    if(message){
-      socket.emit('sendMessage', message);
-    }
-  }
+  // const send = () => {
+  //   if(message){
+  //     socket.emit('sendMessage', message);
+  //   }
+  // }
   const comeBack = () => {
     dispatch(quitRoom());
     history.push('/join')
   }
   return(
     <div>
-      <h1>Chat</h1>
-      <button onClick={comeBack}>
-        come back
-      </button>
+      <div class="nav-bar">
+        <button onClick={comeBack}>
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div>{room}</div>
+        <button onClick={comeBack}>
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
       <p>{user}, {room}</p>
       <div style={{textAlign: 'center'}}>
         <h3>Messages</h3>
@@ -60,7 +66,8 @@ const Chat = () => {
         <input 
         value={message} 
         onChange={(e) => setMessage(e.target.value)}/>
-        <button onClick={send}>Send</button>
+        {/* <button onClick={send}>Send</button> */}
+        <button>Send</button>
       </div>
     </div>
   )
