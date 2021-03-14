@@ -4,19 +4,22 @@ import {useHistory} from 'react-router-dom';
 import {quitRoom} from "../../actions/actionsGenerator.js";
 import {useDispatch} from "react-redux";
 import React, {useEffect, useState} from 'react';
-import 'Chat.css';
+import UsersBar from './UsersBar.js';
+import './Chat.css';
 
 // let socket;
 const Chat = () => {
 
 
-  const user = useSelector((state => state.user));
-  const room = useSelector((state => state.room));
+  const user = useSelector((state) => state.user);
+  const room = useSelector((state) => state.room);
+  const background = useSelector((state) => state.backgroundColor)
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [users, setUsers] = useState(["Pepito", "Test", "Juanete"]);
   
   // useEffect(() => {
   //   if(user && room){
@@ -47,17 +50,18 @@ const Chat = () => {
     history.push('/join')
   }
   return(
-    <div>
-      <div class="nav-bar">
+    <div className="chat">
+      <input type="checkbox" id="menu"/>
+      <nav className="nav-bar" style={{background: background}}>
         <button onClick={comeBack}>
-          <i class="fas fa-chevron-left"></i>
+          <i className="fas fa-chevron-left"></i>
         </button>
         <div>{room}</div>
-        <button onClick={comeBack}>
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-      <p>{user}, {room}</p>
+        <label for="menu" class="menu">
+          <i className="fas fa-bars"></i>
+        </label>
+      </nav>
+      <UsersBar users={users}/>
       <div style={{textAlign: 'center'}}>
         <h3>Messages</h3>
         <ul>

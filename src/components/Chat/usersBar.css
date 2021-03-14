@@ -1,0 +1,30 @@
+.users-bar{
+    position: fixed;
+    right: 0;
+    height: 100%;
+    top: 49px;
+    width: 250px;
+    padding: 40px 0;
+    list-style: none;
+}
+.users-bar li{
+    padding: 20px 50px;
+    position: relative;
+    color: white;
+    font-size: 1.1rem;
+    transition: .2s;
+}
+.users-bar li:hover{
+    border-left: solid 4px white;
+    background: rgba(255,255,255,0.2);
+}
+.users-bar li:before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: green;
+    border-radius: 50%;
+    position: absolute;
+    left: 25px;
+    top: 27px;
+}
