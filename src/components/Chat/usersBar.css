@@ -1,11 +1,46 @@
 .users-bar{
     position: fixed;
     right: 0;
-    height: 100%;
+    bottom: 0;
     top: 49px;
-    width: 250px;
-    padding: 40px 0;
+    width: 0;
+    padding: 20px 0;
     list-style: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    box-shadow: -2px 0px 8px rgba(10,10,10,.7);
+}
+.users-bar::-webkit-scrollbar{
+    width: 6px;
+}
+.users-bar::-webkit-scrollbar-thumb{
+    background: rgba(251,251,251,0.4);
+    border-radius: 20px;
+}
+.users-bar button{
+    display: none;
+    outline: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 15px 30px;
+    border: solid 3px white;
+    padding: 5px 7px 5px 5px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    text-align: center;
+    transition: .2s;
+}
+.users-bar button i{
+    font-size: 1.3rem;
+    color: white;
+}
+.users-bar button:hover {
+    background: white;
+}
+.users-bar button:hover i {
+    color: blue;
 }
 .users-bar li{
     padding: 20px 50px;
@@ -27,4 +62,9 @@
     position: absolute;
     left: 25px;
     top: 27px;
+}
+@media(min-width: 576px){
+    .users-bar button{
+        display: block;
+    }
 }

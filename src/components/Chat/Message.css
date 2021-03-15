@@ -1,0 +1,25 @@
+.speech-burbble{
+    padding: 10px;
+    display: flex;
+}
+.speech-burbble>div{
+    padding: 0.5em 1em;
+    box-shadow: 10px 10px 15px rgba(10,10,10,.3);
+    transition: 0.5s;
+    animation: speech .7s linear 1;
+    max-width: 250px;
+}
+.speech-burbble>div>div{
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+}
+@media(min-width: 576px){
+    .speech-burbble>div{max-width: 310px;}
+}
+@media(min-width: 768px){
+    .speech-burbble>div{max-width: 470px;}
+}
+@media(min-width: 992px){
+    .speech-burbble>div{max-width: 680px;}
+}

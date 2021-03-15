@@ -5,6 +5,7 @@ import {quitRoom} from "../../actions/actionsGenerator.js";
 import {useDispatch} from "react-redux";
 import React, {useEffect, useState} from 'react';
 import UsersBar from './UsersBar.js';
+import Message from './Message.js';
 import './Chat.css';
 
 // let socket;
@@ -17,10 +18,65 @@ const Chat = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      message: "hola, ¿cómo estas?",
+      user: "Juanete"
+    },
+    {
+      message: "bien, ¿y tú?",
+      user: "test"
+    },
+    {
+      message: "bien",
+      user: "Juanete"
+    },
+    {
+      message: "muchachos, el chat no funciona",
+      user: "Pepito"
+    },
+    {
+      message: "hola, ¿cómo estas?",
+      user: "Juanete"
+    },
+    {
+      message: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ab perferendis fugit rerum quia velit, sunt eaque autem, blanditiis porro a animi ducimus natus at temporibus id eum magni ex!",
+      user: "test"
+    },
+    {
+      message: "bien",
+      user: "Juanete"
+    },
+    {
+      message: "muchachos, el chat no funciona",
+      user: "Pepito"
+    },
+    {
+      message: "hola, ¿cómo estas?",
+      user: "Juanete"
+    },
+    {
+      message: "bien, ¿y tú?",
+      user: "test"
+    },
+    {
+      message: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ab perferendis fugit rerum quia velit, sunt eaque autem, blanditiis porro a animi ducimus natus at temporibus id eum magni ex!",
+      user: "Juanete"
+    },
+    {
+      message: "muchachos, el chat no funciona",
+      user: "Pepito"
+    },
+  ]);
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState(["Pepito", "Test", "Juanete"]);
-  
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    window.addEventListener("resize", () => setWidth(window.innerWidth));
+  }, []);
+
   // useEffect(() => {
   //   if(user && room){
   //     socket = io('https://academlo-chat.herokuapp.com/', {
@@ -52,26 +108,33 @@ const Chat = () => {
   return(
     <div className="chat">
       <input type="checkbox" id="menu"/>
-      <nav className="nav-bar" style={{background: background}}>
-        <button onClick={comeBack}>
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <div>{room}</div>
-        <label for="menu" class="menu">
-          <i className="fas fa-bars"></i>
-        </label>
-      </nav>
-      <UsersBar users={users}/>
-      <div style={{textAlign: 'center'}}>
-        <h3>Messages</h3>
-        <ul>
-          {messages.map((msg, i) => <li key={i}>{msg}</li>)}
-        </ul>
-        <input 
-        value={message} 
-        onChange={(e) => setMessage(e.target.value)}/>
-        {/* <button onClick={send}>Send</button> */}
-        <button>Send</button>
+      <div className="messages-layout">
+        <UsersBar users={users} comeBack={comeBack}/>
+        <div style={{width: '100%'}}>
+          <nav 
+          className="nav-bar" 
+          style={{background: width <= 576 ? background : 'white'}}>
+            <div>
+              <button onClick={comeBack}>
+                <i className="fas fa-chevron-left"></i>
+              </button>
+            </div>
+            <div>{room}</div>
+            <div>
+              <label htmlFor="menu">
+                <i className="fas fa-bars"></i>
+              </label>
+            </div>
+          </nav>
+          <div className="messages-container">
+            {messages.map((msg, i) => <Message key={i} message={msg}/>)}
+          </div>
+          <input 
+          value={message} 
+          onChange={(e) => setMessage(e.target.value)}/>
+          {/* <button onClick={send}>Send</button> */}
+          <button>Send</button>
+        </div>
       </div>
     </div>
   )
