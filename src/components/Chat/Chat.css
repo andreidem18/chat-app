@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;700&display=swap');.chat{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'segoe ui', sans-serif;
+}
+
+.messages-layout{
+    height: 100vh;
 }
 
 /* Nav bar */
 .chat .nav-bar{
-    height: 50px;
+    height: 8vh;
     background: red;
     display: flex;
     justify-content: space-between;
@@ -12,6 +16,8 @@
     padding: 0 15px;
     color: white;
     font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
 }
 
 .nav-bar button{
@@ -41,10 +47,11 @@
 
 /* messages container */
 .messages-container{
-    height: 81%;
+    height: 82vh;
     padding: 20px;
     overflow: scroll;
     overflow-x: hidden;
+    position: relative;
 }
 .messages-container::-webkit-scrollbar{
     width: 10px;
@@ -53,9 +60,69 @@
     background: rgba(100, 100, 100, 0.4);
     border-radius: 20px;
 }
+
+
+
+/* Input container */
+.chat .input-container{
+    background: #f0f0f0;
+    position: relative;
+    height: 10vh;
+    padding: 14px;
+    box-shadow: 0 0 5px rgba(100, 100, 100, 0.4);
+}
+.chat .input-container>div{
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+}
+.chat .input-container .emoticono-button{
+    border: 0;
+    outline: 0;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.chat .picker{
+    position: fixed;
+    bottom: 75px;
+    left: 15px;
+}
+.chat .input-container .emoticono-button i{
+    font-size: 1.7rem;
+}
+.chat .input-container input{
+    height: 100%;
+    width: 80%;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    padding: 0 15px;
+    font-size: 1rem;
+    color: #4a4a4a;
+}
+.chat .input-container :nth-child(3){
+    height: 36px;
+    width: 36px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: none;
+    outline: 0;
+    cursor: pointer;
+}
+.chat .input-container button i{
+    color: white;
+    position: relative;
+    font-size: 1rem;
+    right: 2px;
+    top: 1px;
+}
+
+
+
+/* Responsive */
 @media(min-width: 576px){
     .chat .nav-bar{
-        height: 70px;
+        height: 10vh;
         background: white;
         box-shadow: 0 2px 8px rgba(100,100,100,.3);
         color: rgb(24, 23, 23);
@@ -76,7 +143,25 @@
         bottom: 0;
         top: 0;
     }
+    .messages-container{
+        height: 80vh;
+    }
     .nav-bar button{
         display: none;
+    }
+    .chat .input-container input {
+        width: 90%;
+    }
+    .chat .input-container{
+        height: 10vh;
+    }
+    .chat .picker{
+        left: 200px;
+    }
+}
+
+@media(min-width: 900px){
+    .chat .picker{
+        left: 220px;
     }
 }

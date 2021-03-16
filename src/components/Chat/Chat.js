@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import React, {useEffect, useState} from 'react';
 import UsersBar from './UsersBar.js';
 import Message from './Message.js';
+import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import './Chat.css';
 
 // let socket;
@@ -70,6 +71,7 @@ const Chat = () => {
   ]);
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState(["Pepito", "Test", "Juanete"]);
+  const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -111,6 +113,8 @@ const Chat = () => {
       <div className="messages-layout">
         <UsersBar users={users} comeBack={comeBack}/>
         <div style={{width: '100%'}}>
+
+
           <nav 
           className="nav-bar" 
           style={{background: width <= 576 ? background : 'white'}}>
@@ -126,14 +130,41 @@ const Chat = () => {
               </label>
             </div>
           </nav>
+
+
           <div className="messages-container">
             {messages.map((msg, i) => <Message key={i} message={msg}/>)}
           </div>
-          <input 
-          value={message} 
-          onChange={(e) => setMessage(e.target.value)}/>
-          {/* <button onClick={send}>Send</button> */}
-          <button>Send</button>
+
+
+          <div className="input-container">
+            <div>
+              <button
+              className="emoticono-button"
+              onClick={() => setIsPickerVisible(!isPickerVisible)}>
+                <i 
+                className="far fa-smile"
+                style={{color: isPickerVisible ? background : 'rgba(100, 100, 100, 0.4)'}}></i>
+              </button>
+              <input 
+              value={message} 
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="write a message here"/>
+                {/* <button onClick={send}>Send</button> */}
+              <button
+              style={{background: background}}>
+                <i className="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div 
+              style={{display: isPickerVisible ? 'inline-block' : 'none'}}
+              className="picker">
+                <Picker  
+                onEmojiClick={(e, emoji) => setMessage(message + emoji.emoji)} 
+                skinTone={SKIN_TONE_MEDIUM_DARK}/>
+              </div>
         </div>
       </div>
     </div>
