@@ -73,6 +73,7 @@ const Chat = () => {
   const [users, setUsers] = useState(["Pepito", "Test", "Juanete"]);
   const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const token = useSelector((state) => state.token)
 
   useEffect(() => {
     setWidth(window.innerWidth);
