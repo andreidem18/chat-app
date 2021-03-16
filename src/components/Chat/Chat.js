@@ -71,6 +71,7 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [users, setUsers] = useState(["Pepito", "Test", "Juanete"]);
   const [width, setWidth] = useState(window.innerWidth);
+  const token = useSelector((state) => state.token)
 
   useEffect(() => {
     setWidth(window.innerWidth);
