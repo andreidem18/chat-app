@@ -5,7 +5,8 @@ const INITIAL_STATE={
     user: "test",
     access: false,
     token: "",
-    backgroundColor: "#6693ff"
+    backgroundColor: "#6693ff",
+    isDarkMode: false
   }
   
   const reducer = (state=INITIAL_STATE, action) => {
@@ -33,6 +34,16 @@ const INITIAL_STATE={
           user: '',
           access: false,
           token: ''
+        }
+      case types.toggleDarkMode:
+        return{
+          ...state,
+          isDarkMode: !state.isDarkMode
+        }
+      case types.setBackground:
+        return{
+          ...state,
+          backgroundColor: action.payload
         }
       default:
         return state;

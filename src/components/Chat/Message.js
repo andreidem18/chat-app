@@ -4,24 +4,15 @@ import {useSelector} from 'react-redux';
 const Message = ({ message }) => {
     const user = useSelector((state) => state.user);
     const background = useSelector((state) => state.backgroundColor);
+    const isDarkMode = useSelector((state) => state.isDarkMode);
     const styleOwner = {
-        background: '#e0e0e0',
+        background: isDarkMode ? '#201f1f': '#e0e0e0',
+        color: isDarkMode ? 'white' : 'black',
         borderRadius: '0.5em 0 0.5em 0.5em',
-        borderTopColor: '#e0e0e0',
-        borderRightColor: '#e0e0e0',
-        ':hover': {
-            background: '#ff0000'
-        }
     }
     const styleUsers = {
         background: background,
         borderRadius: '0 0.5em 0.5em 0.5em',
-        borderTopColor: background,
-        borderRightColor: background,
-        ':after': {
-            right: '100%',
-            content: 'Hola'
-        }
     }
     return(
         <div 

@@ -1,29 +1,35 @@
 .users-bar{
     position: fixed;
+    z-index: 100;
     right: 0;
     bottom: 0;
     top: 49px;
     width: 0;
-    padding: 20px 0;
     list-style: none;
-    overflow: scroll;
-    overflow-x: hidden;
     box-shadow: -2px 15px 8px rgba(10,10,10,.7);
 }
-.users-bar::-webkit-scrollbar{
+.users-bar .users{
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 82.3vh;
+}
+.users-bar .users::-webkit-scrollbar{
     width: 6px;
 }
-.users-bar::-webkit-scrollbar-thumb{
+.users-bar .users::-webkit-scrollbar-thumb{
     background: rgba(251,251,251,0.4);
     border-radius: 20px;
 }
-.users-bar button{
+.users-bar .come-back{
+    height: 10vh;
     display: none;
+    align-items: center;
+}
+.users-bar .come-back button{
     outline: 0;
     background: transparent;
-    border: none;
     cursor: pointer;
-    margin: 0 0 15px 30px;
+    margin-left: 30px;
     border: solid 3px white;
     padding: 5px 7px 5px 5px;
     height: 35px;
@@ -40,7 +46,7 @@
     background: white;
 }
 .users-bar button:hover i {
-    color: blue;
+    color: black;
 }
 .users-bar li{
     padding: 20px 50px;
@@ -63,8 +69,61 @@
     left: 25px;
     top: 27px;
 }
+
+.users-bar .settings{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+    box-shadow: -2px -2px 7px rgba(59, 59, 59, 0.2);
+}
+.users-bar .settings button{
+    border-radius: 50%;
+    height: 35px;
+    width: 0;
+    cursor: pointer;
+    border: solid 3px white;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+    outline: 0;
+    background: transparent;
+    transition: .2s;
+}
+.users-bar .settings button:hover{
+    background: white;
+}
+.users-bar .settings button.dark-mode:hover i{
+    color: white;
+}
+.users-bar .settings button.dark-mode-button{
+    border: 0;
+}
+
+.users-bar .settings .palette{
+    position: fixed;
+    bottom:60px;
+    right: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-around;
+    width: 230px;
+    border-radius: 50px;
+    box-shadow: 2px 2px 8px rgba(75, 74, 74, 0.4);
+    background: white;
+    transform-origin: right bottom;
+    transition: transform 0.4s ease-in-out;
+}
 @media(min-width: 576px){
-    .users-bar button{
-        display: block;
+    .users-bar .come-back{
+        display: flex;
+    }
+    .users-bar .settings .palette{
+        left: 20px;
+        transform-origin: bottom;
+    }
+    .users-bar .users{
+        height: 80vh;
+    }
+    .users-bar .settings button{
+        width: 35px;
     }
 }

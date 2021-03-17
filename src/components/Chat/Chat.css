@@ -9,15 +9,14 @@
 /* Nav bar */
 .chat .nav-bar{
     height: 8vh;
-    background: red;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
-    color: white;
     font-size: 1.5rem;
     font-family: 'Roboto', sans-serif;
     position: relative;
+    transition: .4s;
 }
 
 .nav-bar button{
@@ -43,6 +42,9 @@
 #menu:checked ~ .messages-layout .users-bar{
     width: 250px;
 }
+#menu:checked ~ .messages-layout .users-bar .settings button{
+    width: 35px;
+}
 
 
 /* messages container */
@@ -52,6 +54,7 @@
     overflow: scroll;
     overflow-x: hidden;
     position: relative;
+    transition: .4s;
 }
 .messages-container::-webkit-scrollbar{
     width: 10px;
@@ -70,6 +73,7 @@
     height: 10vh;
     padding: 14px;
     box-shadow: 0 0 5px rgba(100, 100, 100, 0.4);
+    transition: .4s;
 }
 .chat .input-container>div{
     margin: 0 auto;
@@ -81,11 +85,7 @@
     outline: 0;
     margin-right: 10px;
     cursor: pointer;
-}
-.chat .picker{
-    position: fixed;
-    bottom: 75px;
-    left: 15px;
+    background: transparent;
 }
 .chat .input-container .emoticono-button i{
     font-size: 1.7rem;
@@ -99,6 +99,7 @@
     padding: 0 15px;
     font-size: 1rem;
     color: #4a4a4a;
+    transition: .4s;
 }
 .chat .input-container :nth-child(3){
     height: 36px;
@@ -119,13 +120,22 @@
 
 
 
+.chat .picker{
+    position: fixed;
+    bottom: 75px;
+    left: 15px;
+    transform-origin: left bottom;
+    transition: transform 0.4s ease-in-out;
+}
+
+
+
 /* Responsive */
 @media(min-width: 576px){
     .chat .nav-bar{
         height: 10vh;
         background: white;
         box-shadow: 0 2px 8px rgba(100,100,100,.3);
-        color: rgb(24, 23, 23);
         font-size: 1.7rem;
     }
     .chat .nav-bar label{
@@ -142,6 +152,10 @@
         position: relative;
         bottom: 0;
         top: 0;
+    }
+    .users-bar .settings button{
+        width: 35px;
+        border: solid 3px white;
     }
     .messages-container{
         height: 80vh;

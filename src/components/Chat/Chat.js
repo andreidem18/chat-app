@@ -15,7 +15,8 @@ const Chat = () => {
 
   const user = useSelector((state) => state.user);
   const room = useSelector((state) => state.room);
-  const background = useSelector((state) => state.backgroundColor)
+  const isDarkMode = useSelector((state) => state.isDarkMode);
+  const background = useSelector((state) => state.backgroundColor);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -85,7 +86,7 @@ const Chat = () => {
   //     socket = io('https://academlo-chat.herokuapp.com/', {
   //         query: {
   //             token:
-  //               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjA0OTVhMWE4NmVjNjFjYmQ4YmE3YzNjIiwiaWF0IjoxNjE1NDE5OTMwLCJleHAiOjE2MTU2NzkxMzB9.i60o7JKcmoLV45EO2EvZOTBwJV19CCNgDqJi5djBPCc"
+  //               token
   //         }
   //     });
   //     socket.emit('join', user, room);
@@ -118,7 +119,9 @@ const Chat = () => {
 
           <nav 
           className="nav-bar" 
-          style={{background: width <= 576 ? background : 'white'}}>
+          style={{background: width <= 576 ? background : isDarkMode ? '#201f1f' : 'white',
+                  color: width <= 576 || isDarkMode ? 'white' : 'rgb(24, 23, 23)',
+                  boxShadow: '0 2px 8px rgba(100,100,100,.3)'}}>
             <div>
               <button onClick={comeBack}>
                 <i className="fas fa-chevron-left"></i>
@@ -133,21 +136,26 @@ const Chat = () => {
           </nav>
 
 
-          <div className="messages-container">
+          <div 
+          className="messages-container"
+          style={{background: isDarkMode ? '#373636' : 'white'}}>
             {messages.map((msg, i) => <Message key={i} message={msg}/>)}
           </div>
 
 
-          <div className="input-container">
+          <div 
+          className="input-container"
+          style={{background: isDarkMode ? '#201f1f' : '#f0f0f0'}}>
             <div>
               <button
               className="emoticono-button"
               onClick={() => setIsPickerVisible(!isPickerVisible)}>
                 <i 
                 className="far fa-smile"
-                style={{color: isPickerVisible ? background : 'rgba(100, 100, 100, 0.4)'}}></i>
+                style={{color: isPickerVisible ? background : '#8d8c8cb5'}}></i>
               </button>
               <input 
+              style={{background: isDarkMode ? '#373636' : 'white'}}
               value={message} 
               onChange={(e) => setMessage(e.target.value)}
               placeholder="write a message here"/>
@@ -160,7 +168,7 @@ const Chat = () => {
           </div>
           
           <div 
-              style={{display: isPickerVisible ? 'inline-block' : 'none'}}
+              style={{transform: isPickerVisible ? 'scale(1)' : 'scale(0)'}}
               className="picker">
                 <Picker  
                 onEmojiClick={(e, emoji) => setMessage(message + emoji.emoji)} 
