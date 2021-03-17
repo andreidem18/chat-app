@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/actionsGenerator.js";
 import { useHistory } from "react-router-dom";
-import { Button, Container, Form, Grid, Header, Label, Message, Segment, } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Header, Label, Message, Segment } from "semantic-ui-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,56 +48,30 @@ const Login = () => {
 
   return (
     <Container>
-      <Segment basic padded="very" />
+      <Segment basic padded="very" only="computer" />
 
-      <Grid>
+      <Grid stackable>
         <Grid.Row>
-          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column only="computer" width={4}></Grid.Column>
           <Grid.Column width={8}>
             <Segment stacked raised padded="very" color="blue">
               <Header as="h2" textAlign="center" color="blue">
                 Chat App
                 <Header.Subheader>
-                  Enter your credentials to access the chat rooms
+                  Login to enter the chat rooms
                 </Header.Subheader>
               </Header>
 
               <Form error>
-                <Form.Input
-                  fluid
-                  label="Email"
-                  placeholder="Email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <Form.Input
-                  fluid
-                  label="Password"
-                  placeholder="Password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-
-                <Button
-                  animated="fade"
-                  color="linkedin"
-                  onClick={() => toValidate(true)}
-                >
+                <Form.Input fluid label="Email" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                <Form.Input fluid label="Password" placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                
+                <Button animated="fade" color="linkedin" onClick={() => toValidate(true)}>
                   <Button.Content visible>Submit</Button.Content>
                   <Button.Content hidden>Now!</Button.Content>
                 </Button>
-
-                <Button
-                  color="google plus"
-                  floated="right"
-                  onClick={() => history.push("/signup")}
-                >
-                  Sign up
-                </Button>
+                
+                <Button color="google plus" floated="right" onClick={() => history.push("/signup")}>Sign up</Button>
               </Form>
 
               <Label attached="top right" color="blue">
@@ -106,11 +80,10 @@ const Login = () => {
             </Segment>
             {message}
           </Grid.Column>
-          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column only="computer" width={4}></Grid.Column>
         </Grid.Row>
       </Grid>
-
-      </Container>
+    </Container>
   );
 };
 export default Login;

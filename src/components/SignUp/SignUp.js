@@ -27,7 +27,7 @@ const SignUp = () => {
                             user: res.data.user.username
                         }));
                         setMessage(
-                            <Message error header="Invalid Access" content={res.data.message} />
+                            <Message error header="Invalid Data" content={res.data.message} />
                         );
                         history.push('/join')
                     } else {
@@ -42,9 +42,9 @@ const SignUp = () => {
         <Container>
         <Segment basic padded="very" />
   
-        <Grid>
+        <Grid stackable>
           <Grid.Row>
-            <Grid.Column width={4}></Grid.Column>
+            <Grid.Column only='computer' width={4}></Grid.Column>
             <Grid.Column width={8}>
               <Segment stacked raised padded="very" color="red">
                 <Header as="h2" textAlign="center" color="red">
@@ -98,42 +98,11 @@ const SignUp = () => {
               </Segment>
               {message}
             </Grid.Column>
-            <Grid.Column width={4}></Grid.Column>
+            <Grid.Column only='computer' width={4}></Grid.Column>
           </Grid.Row>
         </Grid>
   
         </Container>
-
-        // <label>
-        //   email
-        //   <input
-        //     type="email"
-        //     value={email}
-        //     onChange={(e) => setEmail(e.target.value)}
-        //     required
-        //   />
-        // </label>
-        // <label>
-        //   User name
-        //   <input
-        //     type="text"
-        //     value={userName}
-        //     onChange={(e) => setUserName(e.target.value)}
-        //     required
-        //   />
-        // </label>
-        // <label>
-        //   password
-        //   <input
-        //     type="password"
-        //     value={password}
-        //     onChange={(e) => setPassword(e.target.value)}
-        //     required
-        //   />
-        // </label>
-        // <button onClick={() => toValidate(true)}>Submit</button>
-        // <p>{message}</p>
-        // <button onClick={() => history.push("/")}>Log in</button>
     );
 }
 export default SignUp;
