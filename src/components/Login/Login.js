@@ -3,17 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../actions/actionsGenerator.js";
 import { useHistory } from "react-router-dom";
-import {
-  Button,
-  Container,
-  Form,
-  Grid,
-  Header,
-  Icon,
-  Label,
-  Message,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Container, Form, Grid, Header, Label, Message, Segment, } from "semantic-ui-react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +38,6 @@ const Login = () => {
                 error
                 header="Invalid Access"
                 content={res.data.message}
-                attached='bottom'
               />
             );
           }
@@ -65,23 +54,19 @@ const Login = () => {
         <Grid.Row>
           <Grid.Column width={4}></Grid.Column>
           <Grid.Column width={8}>
-
-            <Segment stacked raised padded="very">
-
-
+            <Segment stacked raised padded="very" color="blue">
               <Header as="h2" textAlign="center" color="blue">
                 Chat App
                 <Header.Subheader>
-                Enter your credentials to access the chat rooms
+                  Enter your credentials to access the chat rooms
                 </Header.Subheader>
               </Header>
-
 
               <Form error>
                 <Form.Input
                   fluid
-                  label="User"
-                  placeholder="User"
+                  label="Email"
+                  placeholder="Email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -106,41 +91,26 @@ const Login = () => {
                   <Button.Content hidden>Now!</Button.Content>
                 </Button>
 
-                <Button color="google plus" floated="right" onClick={() => history.push("/signup")}>Sign up</Button>
-                
+                <Button
+                  color="google plus"
+                  floated="right"
+                  onClick={() => history.push("/signup")}
+                >
+                  Sign up
+                </Button>
               </Form>
 
-
-              <Label attached='top right' color="blue">Login</Label>
+              <Label attached="top right" color="blue">
+                Login
+              </Label>
             </Segment>
-              {message}
+            {message}
           </Grid.Column>
           <Grid.Column width={4}></Grid.Column>
         </Grid.Row>
       </Grid>
 
-      {/* <label>
-          email
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button onClick={() => toValidate(true)}>Submit</button>
-        <p>{message}</p>
-        <button onClick={() => history.push("/signup")}>sign up</button> */}
-    </Container>
+      </Container>
   );
 };
 export default Login;
