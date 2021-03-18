@@ -57,6 +57,7 @@ const Chat = () => {
       });
       socket.on("message", (data) => {
         setMessages([...messages, data]);
+        console.log(data);
       });
     }
   }, [socket, room, user, messages]);

@@ -1,4 +1,4 @@
-import {body2} from './join.css'
+import './join.css'
 import {useDispatch} from 'react-redux';
 import {addRoom, logOut} from '../../actions/actionsGenerator';
 import {useHistory} from 'react-router-dom';
