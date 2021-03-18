@@ -4,15 +4,7 @@ import { addRoom, logOut } from "../../actions/actionsGenerator";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 // import { useSelector } from "react-redux";
-import {
-  Button,
-  Container,
-  Form,
-  Grid,
-  Header,
-  Label,
-  Segment,
-} from "semantic-ui-react";
+import { Button, Container, Form, Grid, Header, Label, Segment } from "semantic-ui-react";
 
 const Join = () => {
   const dispatch = useDispatch();
@@ -32,19 +24,6 @@ const Join = () => {
   };
 
   return (
-    // <div className="body2">
-    //     <label>
-    //       Roomooo
-    //       <input type="text"
-    //         value={room}
-    //         onChange={(e) => setRoom(e.target.value)}/>
-    //     </label>
-    //     <button onClick={handleRoom} style={{background: background}}>
-    //       Get into
-    //     </button>
-    //     <button onClick={handleLogOut}>
-    //       log out
-    //     </button>
 
     <Container>
       <Segment basic padded="very" />

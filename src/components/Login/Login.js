@@ -46,7 +46,10 @@ const Login = () => {
     }
   }, [validate, dispatch, email, password, history]);
 
+  document.body.style = 'background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg"); background-repeat: no-repeat; background-size: 100% 100%;';
+
   return (
+    <div style={ {backgroundImage: 'url("")', height: '100%'} }>
     <Container>
       <Segment basic padded="very" only="computer" />
 
@@ -84,6 +87,7 @@ const Login = () => {
         </Grid.Row>
       </Grid>
     </Container>
+    </div>
   );
 };
 export default Login;
