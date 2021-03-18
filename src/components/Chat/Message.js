@@ -24,7 +24,7 @@ const Message = ({ message }) => {
                 <div style={{display: message.user === user ? 'none' : 'block'}}>
                     {message.user}
                 </div>
-                {message.message}
+                {message.text}
             </div>
         </div>
     )

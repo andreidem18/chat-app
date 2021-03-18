@@ -73,6 +73,16 @@ const SignUp = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
+                  
+                  <label>
+                    User name
+                    <input
+                      type="text"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                      required
+                    />
+                  </label>
   
                   <Button
                     animated="fade"

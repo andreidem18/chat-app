@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux';
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 import {useHistory} from 'react-router-dom';
 import {quitRoom} from "../../actions/actionsGenerator.js";
 import {useDispatch} from "react-redux";
@@ -9,7 +9,6 @@ import Message from './Message.js';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import './Chat.css';
 
-// let socket;
 const Chat = () => {
 
 
@@ -20,60 +19,12 @@ const Chat = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [messages, setMessages] = useState([
-    {
-      message: "hola, ¿cómo estas?",
-      user: "Juanete"
-    },
-    {
-      message: "bien, ¿y tú?",
-      user: "test"
-    },
-    {
-      message: "bien",
-      user: "Juanete"
-    },
-    {
-      message: "muchachos, el chat no funciona",
-      user: "Pepito"
-    },
-    {
-      message: "hola, ¿cómo estas?",
-      user: "Juanete"
-    },
-    {
-      message: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ab perferendis fugit rerum quia velit, sunt eaque autem, blanditiis porro a animi ducimus natus at temporibus id eum magni ex!",
-      user: "test"
-    },
-    {
-      message: "bien",
-      user: "Juanete"
-    },
-    {
-      message: "muchachos, el chat no funciona",
-      user: "Pepito"
-    },
-    {
-      message: "hola, ¿cómo estas?",
-      user: "Juanete"
-    },
-    {
-      message: "bien, ¿y tú?",
-      user: "test"
-    },
-    {
-      message: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas ab perferendis fugit rerum quia velit, sunt eaque autem, blanditiis porro a animi ducimus natus at temporibus id eum magni ex!",
-      user: "Juanete"
-    },
-    {
-      message: "muchachos, el chat no funciona",
-      user: "Pepito"
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const [users, setUsers] = useState(["Pepito", "Test", "Juanete"]);
+  const [users, setUsers] = useState([]);
   const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
+  const [socket, setSocket] = useState(null);
   const token = useSelector((state) => state.token)
 
   useEffect(() => {
@@ -81,30 +32,44 @@ const Chat = () => {
     window.addEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
 
-  // useEffect(() => {
-  //   if(user && room){
-  //     socket = io('https://academlo-chat.herokuapp.com/', {
-  //         query: {
-  //             token:
-  //               token
-  //         }
-  //     });
-  //     socket.emit('join', user, room);
-  //     socket.on('error', error => console.log(error));
-  //   }
-  // }, [user, room])
+  useEffect(() => {
+    if (token) {
+      const connection = io("https://academlo-chat.herokuapp.com/", {
+        query: {
+          token,
+        },
+      });
 
-  // useEffect(() => {
-  //   socket.on('message', (message) => {
-  //     setMessages(msgs => [ ...msgs, message ]);
-  //   })
-  // }, []);
+      setSocket(connection);
+    }
+  }, [token, room]);
 
-  // const send = () => {
-  //   if(message){
-  //     socket.emit('sendMessage', message);
-  //   }
-  // }
+  useEffect(() => {
+    if (socket) {
+      socket.emit("join", { name: user, room: room }, (error) => {
+        if (error) {
+          console.error(error);
+        }
+      });
+
+      socket.on("roomData", (data) => {
+        setUsers(data.users);
+      });
+      socket.on("message", (data) => {
+        setMessages([...messages, data]);
+      });
+    }
+  }, [socket, room, user, messages]);
+
+  const send = () => {
+    if(message){
+      socket.emit('sendMessage', message, (error) => {
+        if(error) {
+          console.error(error);
+        }
+      });
+    }
+  }
   const comeBack = () => {
     dispatch(quitRoom());
     history.push('/join')
@@ -159,9 +124,9 @@ const Chat = () => {
               value={message} 
               onChange={(e) => setMessage(e.target.value)}
               placeholder="write a message here"/>
-                {/* <button onClick={send}>Send</button> */}
               <button
-              style={{background: background}}>
+              style={{background: background}}
+              onClick={send}>
                 <i className="fas fa-paper-plane"></i>
               </button>
             </div>

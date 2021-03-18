@@ -22,7 +22,7 @@ const UsersBar = ({ users, comeBack }) => {
 
 
             <div className='users'>
-                {users.map(user => <li key={user}>{user}</li>)}
+                {users.map(user => <li key={user.id}>{user.name}</li>)}
             </div>
 
 
