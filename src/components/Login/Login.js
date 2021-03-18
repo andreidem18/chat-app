@@ -22,7 +22,6 @@ const Login = () => {
           password,
         })
         .then((res) => {
-          console.log(res);
           if (res.data.access) {
             dispatch(
               login({
@@ -31,6 +30,7 @@ const Login = () => {
               })
             );
             setMessage(res.data.message);
+            sessionStorage.setItem("token", res.data.user.token);
             history.push("/join");
           } else {
             setMessage(

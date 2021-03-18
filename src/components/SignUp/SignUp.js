@@ -29,6 +29,7 @@ const SignUp = () => {
                         setMessage(
                             <Message error header="Invalid Data" content={res.data.message} />
                         );
+                        sessionStorage.setItem("token", res.data.user.token)
                         history.push('/join')
                     } else {
                         setMessage(res.data.message);

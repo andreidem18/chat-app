@@ -25,7 +25,7 @@ const Chat = () => {
   const [isPickerVisible, setIsPickerVisible] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
   const [socket, setSocket] = useState(null);
-  const token = useSelector((state) => state.token)
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -68,6 +68,7 @@ const Chat = () => {
         if(error) {
           console.error(error);
         }
+      setMessage("");
       });
     }
   }
