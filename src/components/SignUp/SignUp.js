@@ -45,7 +45,7 @@ const SignUp = () => {
   
         <Grid stackable>
           <Grid.Row>
-            <Grid.Column only='computer' width={4}></Grid.Column>
+            <Grid.Column only="computer" width={4}></Grid.Column>
             <Grid.Column width={8}>
               <Segment stacked raised padded="very" color="red">
                 <Header as="h2" textAlign="center" color="red">
@@ -75,15 +75,14 @@ const SignUp = () => {
                     required
                   />
                   
-                  <label>
-                    User name
-                    <input
-                      type="text"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      required
-                    />
-                  </label>
+                  <Form.Input
+                    fluid
+                    label="Username"
+                    placeholder="Username"
+                    type="text"
+                    onChange={(e) => setUserName(e.target.value)}
+                    required
+                  />
   
                   <Button
                     animated="fade"
@@ -109,7 +108,7 @@ const SignUp = () => {
               </Segment>
               {message}
             </Grid.Column>
-            <Grid.Column only='computer' width={4}></Grid.Column>
+            <Grid.Column only="computer" width={4}></Grid.Column>
           </Grid.Row>
         </Grid>
   
