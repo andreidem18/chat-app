@@ -47,7 +47,7 @@ const SignUp = () => {
           <Grid.Row>
             <Grid.Column only="computer" width={4}></Grid.Column>
             <Grid.Column width={8}>
-              <Segment stacked raised padded="very" color="red">
+              <Segment stacked raised padded="very" style={{background: "rgb(86 73 143 / 36%)"}}>
                 <Header as="h2" textAlign="center" color="red">
                   Chat App
                   <Header.Subheader>

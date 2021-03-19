@@ -57,7 +57,7 @@ const Login = () => {
         <Grid.Row>
           <Grid.Column only="computer" width={4}></Grid.Column>
           <Grid.Column width={8}>
-            <Segment stacked raised padded="very" color="blue">
+            <Segment stacked raised padded="very" color="blue" style={{background: "#fafafa00"}}>
               <Header as="h2" textAlign="center" color="blue">
                 Chat App
                 <Header.Subheader>
