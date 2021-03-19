@@ -23,7 +23,7 @@ const Join = () => {
     dispatch(logOut());
   };
 
-  document.body.style = 'background-image: url("https://i.pinimg.com/originals/e8/00/1c/e8001c24a5b6925919833fa02c0fbe39.jpg"); background-repeat: no-repeat; background-size: 100% 100%;';
+  document.body.style = 'background-image: url("https://images4.alphacoders.com/102/thumb-1920-1029784.jpg"); background-repeat: no-repeat; background-size: 100% 100%;';
 
   return (
 
@@ -34,7 +34,7 @@ const Join = () => {
         <Grid.Row >
           <Grid.Column only="computer" width={4}></Grid.Column>
           <Grid.Column width={8}>
-            <Segment stacked raised padded="very" style={{background: "rgb(232 235 238 / 39%)"}}>
+            <Segment stacked raised padded="very" style={{background: "rgb(18 22 34 / 46%)"}}>
               <Header as="h2" textAlign="center" color="purple">
                 Join to Room
                 <Header.Subheader>
