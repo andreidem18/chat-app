@@ -23,16 +23,18 @@ const Join = () => {
     dispatch(logOut());
   };
 
+  document.body.style = 'background-image: url("https://i.pinimg.com/originals/e8/00/1c/e8001c24a5b6925919833fa02c0fbe39.jpg"); background-repeat: no-repeat; background-size: 100% 100%;';
+
   return (
 
     <Container>
       <Segment basic padded="very" />
 
       <Grid stackable>
-        <Grid.Row>
+        <Grid.Row >
           <Grid.Column only="computer" width={4}></Grid.Column>
           <Grid.Column width={8}>
-            <Segment stacked raised padded="very">
+            <Segment stacked raised padded="very" style={{background: "rgb(232 235 238 / 39%)"}}>
               <Header as="h2" textAlign="center" color="purple">
                 Join to Room
                 <Header.Subheader>
