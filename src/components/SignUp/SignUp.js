@@ -19,7 +19,7 @@ const SignUp = () => {
     useEffect(() => {
         if(validate){
             axios
-                .post('https://academlo-chat.herokuapp.com/api/users/login', {email,username: userName,password})
+                .post('https://academlo-chat.herokuapp.com/api/users/signup', {email,username: userName,password})
                 .then(res => {
                     if(res.data.access){
                         dispatch(login({
@@ -38,7 +38,7 @@ const SignUp = () => {
                 })
         }
     }, [validate, dispatch, email, password, history, userName])
-
+    document.body.style = 'background-image: url("https://wallpaperaccess.com/full/303435.jpg"); background-repeat: no-repeat; background-size: 100% 100%;';
     return (
         <Container>
         <Segment basic padded="very" />
