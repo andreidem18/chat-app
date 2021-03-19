@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import {useHistory} from 'react-router-dom';
 import {quitRoom} from "../../actions/actionsGenerator.js";
 import {useDispatch} from "react-redux";
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import UsersBar from './UsersBar.js';
 import Message from './Message.js';
 import Picker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
@@ -57,7 +57,6 @@ const Chat = () => {
       });
       socket.on("message", (data) => {
         setMessages([...messages, data]);
-        console.log(data);
       });
     }
   }, [socket, room, user, messages]);
@@ -72,6 +71,22 @@ const Chat = () => {
       });
     }
   }
+  const sendThroughEnter = (e) => {
+    if(e.key === 'Enter'){
+      send();
+    }
+  }
+
+
+
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => messagesEndRef.current?.scrollIntoView();
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+
+
   const comeBack = () => {
     dispatch(quitRoom());
     history.push('/join')
@@ -106,6 +121,7 @@ const Chat = () => {
           className="messages-container"
           style={{background: isDarkMode ? '#373636' : 'white'}}>
             {messages.map((msg, i) => <Message key={i} message={msg}/>)}
+            <div ref={messagesEndRef}/>
           </div>
 
 
@@ -121,10 +137,12 @@ const Chat = () => {
                 style={{color: isPickerVisible ? background : '#8d8c8cb5'}}></i>
               </button>
               <textarea 
-              style={{background: isDarkMode ? '#373636' : 'white'}}
+              style={{background: isDarkMode ? '#373636' : 'white',
+                      color: isDarkMode ? 'white' : '#4a4a4a'}}
               value={message} 
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="write a message here"/>
+              placeholder="write a message here"
+              onKeyDown={sendThroughEnter}/>
               <button
               style={{background: background}}
               onClick={send}>

@@ -1,3 +1,8 @@
+.admin-message{
+    text-align: center;
+    color: #8d8c8cb5;
+}
+
 .speech-burbble{
     padding: 10px;
     display: flex;

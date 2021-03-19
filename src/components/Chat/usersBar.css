@@ -9,8 +9,7 @@
     box-shadow: -2px 15px 8px rgba(10,10,10,.7);
 }
 .users-bar .users{
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: auto;
     height: 82.3vh;
 }
 .users-bar .users::-webkit-scrollbar{

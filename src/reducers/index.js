@@ -1,8 +1,8 @@
 import {types} from '../actions/actionsGenerator';
 
 const INITIAL_STATE={
-    room: "sala",
-    user: "test",
+    room: "",
+    user: "",
     access: false,
     token: "",
     backgroundColor: "#6693ff",

@@ -14,6 +14,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const lowerCase = (str) => str.charAt(0).toLowerCase() + str.slice(1);
+
   useEffect(() => {
     if (validate) {
       axios
@@ -23,10 +25,11 @@ const Login = () => {
         })
         .then((res) => {
           if (res.data.access) {
+            let user = lowerCase(res.data.user.username);
             dispatch(
               login({
                 token: res.data.user.token,
-                user: res.data.user.username,
+                user: user,
               })
             );
             setMessage(res.data.message);
@@ -46,7 +49,7 @@ const Login = () => {
     }
   }, [validate, dispatch, email, password, history]);
 
-  document.body.style = 'background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg"); background-repeat: no-repeat; background-size: 100% 100%;';
+  document.body.style = 'background-image: url("http://www.estidia.eu/wp-content/uploads/2018/04/Savin-NY-Website-Background-Web.jpg"); background-repeat: no-repeat; background-size: 100% 100%; background-attachment: fixed;';
 
   return (
     <div style={ {backgroundImage: 'url("")', height: '100%'} }>

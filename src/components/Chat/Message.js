@@ -15,18 +15,26 @@ const Message = ({ message }) => {
         borderRadius: '0 0.5em 0.5em 0.5em',
     }
     return(
-        <div 
-        className="speech-burbble"
-        style={{justifyContent: message.user === user ? 'flex-end' : 'flex-start',
-                color: message.user === user ? 'black' : 'white'}}>
-            <div
-            style={message.user === user ? styleOwner : styleUsers}>
-                <div style={{display: message.user === user ? 'none' : 'block'}}>
-                    {message.user}
+        <>
+            {message.user === 'admin' ? (
+                <div className= "admin-message">
+                    {message.text}
                 </div>
-                {message.text}
+            ) : (
+            <div 
+            className="speech-burbble"
+            style={{justifyContent: message.user === user ? 'flex-end' : 'flex-start',
+                    color: message.user === user ? 'black' : 'white'}}>
+                <div
+                style={message.user === user ? styleOwner : styleUsers}>
+                    <div style={{display: message.user === user ? 'none' : 'block'}}>
+                        {message.user}
+                    </div>
+                    {message.text}
+                </div>
             </div>
-        </div>
+            )}
+        </>
     )
 }
 export default Message
