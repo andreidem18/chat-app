@@ -81,14 +81,13 @@ const Chat = () => {
       <input type="checkbox" id="menu"/>
       <div className="messages-layout">
         <UsersBar users={users} comeBack={comeBack}/>
-        <div style={{width: '100%'}}>
+        <div>
 
 
           <nav 
           className="nav-bar" 
-          style={{background: width <= 576 ? background : isDarkMode ? '#201f1f' : 'white',
-                  color: width <= 576 || isDarkMode ? 'white' : 'rgb(24, 23, 23)',
-                  boxShadow: '0 2px 8px rgba(100,100,100,.3)'}}>
+          style={{background: width <= 576 ? background : isDarkMode ? '#201f1f' : '#f0f0f0',
+                  color: width <= 576 || isDarkMode ? 'white' : 'rgb(24, 23, 23)'}}>
             <div>
               <button onClick={comeBack}>
                 <i className="fas fa-chevron-left"></i>
@@ -121,7 +120,7 @@ const Chat = () => {
                 className="far fa-smile"
                 style={{color: isPickerVisible ? background : '#8d8c8cb5'}}></i>
               </button>
-              <input 
+              <textarea 
               style={{background: isDarkMode ? '#373636' : 'white'}}
               value={message} 
               onChange={(e) => setMessage(e.target.value)}
