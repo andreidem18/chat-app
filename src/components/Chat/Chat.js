@@ -110,7 +110,9 @@ const Chat = () => {
             </div>
             <div>{room}</div>
             <div>
-              <label htmlFor="menu">
+              <label 
+              htmlFor="menu"
+              onClick={() => isPickerVisible(false)}>
                 <i className="fas fa-bars"></i>
               </label>
             </div>
